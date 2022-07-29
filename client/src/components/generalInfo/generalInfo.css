@@ -1,0 +1,109 @@
+ 
+#main-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+ 
+p{
+    font-size:15px;
+    color: grey;
+}
+ #right {
+    float: right;
+}
+#para{
+    border-radius: 50%;
+        background-color: aqua;
+        padding: 10px;
+}
+.userName{
+display: flex;
+margin-top: 30px;
+margin-left: 20px;
+}
+ nav{
+    background: #FFFFFF;
+
+box-shadow: 10px 14px 70px rgba(0, 0, 0, 0.03);
+border-radius: 500px;
+
+ }
+ #generalInfo{
+    font-size: 20px;
+    margin: 30px;
+    background: #6AB4F8;
+    box-shadow: 0px 13px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 500px;
+    padding: 20px;  
+    border: #6AB4F8;
+    color: white;
+ }
+.sub-btn{
+    font-size: 20px;
+    margin: 30px;
+    box-shadow: 0px 13px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 500px;
+    color: #AAAAAA;
+    padding: 20px;  
+    border: #FFFFFF;
+}
+#form-container{
+display: flex;
+gap: 150px;
+margin-left: 150px;
+margin-top: 40px;
+ 
+}
+.inputField {
+    display: flex;
+}
+input{
+    padding:5px;
+    border: 1px solid #C3C3C3;
+border-radius: 8px;
+}
+#addPhoto{
+    display: inline-flex;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+    margin: 30px;
+}
+#camera{
+    width: 50px;
+    height: 50px;
+    padding: 10px 10px;
+    background: #6AB4F8;
+box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.13);
+border-radius: 50%;
+}
+#lowerBtn {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+position: relative;
+top: 50px;
+
+}
+.previousBtn{
+    background: #6AB4F8;
+    border: #6AB4F8;
+box-shadow: 0px 13px 25px rgba(0, 0, 0, 0.15);
+border-radius: 500px;
+padding: 20px;
+color: white;
+width: 100px;
+}
+.saveBtn{
+    background: #4C57B6;
+    border: #4C57B6;
+box-shadow: 0px 13px 25px rgba(0, 0, 0, 0.15);
+border-radius: 50px;
+padding: 20px;
+color: white;
+}
+
+
+  
