@@ -6,6 +6,7 @@ import GeneralInfo from "./components/generalInfo/generalInfo";
 import LocationInfo from "./components/locationInfo/locationInfo";
 
 
+
 function App() {
   return (
      <div className="App">
@@ -16,6 +17,7 @@ function App() {
       <Route path="/generalInfo" element={<GeneralInfo/>}/>
       <Route path="/locationInfo" element={<LocationInfo/>}/>
       <Route path="/basicInfo" element={<BasicInfo/>}/>
+      
       
 
       

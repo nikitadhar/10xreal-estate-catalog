@@ -25,11 +25,18 @@ margin-left: 20px;
 }
  nav{
     background: #FFFFFF;
-
+    margin-left: 60px;
 box-shadow: 10px 14px 70px rgba(0, 0, 0, 0.03);
 border-radius: 500px;
 
  }
+ section{
+    background: #FFFFFF;
+    margin-left: 60px;
+    border-radius: 20px;
+    height: 650px;
+    padding: 10px;
+  }
  #propertyDetail{
     font-size: 20px;
     margin: 30px;
@@ -57,16 +64,21 @@ margin-left: 150px;
 }
 .inputField {
     display: flex;
+    border-radius:3px ;
+    border: 1px solid rgb(80, 78, 78);
 }
-input{
-    padding:5px;
-    border: 1px solid #C3C3C3;
-border-radius: 8px;
+.inputField input{
+    padding: 7px;
+    border:none;
+}
+label{
+    font-size: 20px;
 }
 #lowerBtn {
     display: flex;
     margin: 35px;
     gap: 20px;
+     
     justify-content: center;
 
 }
@@ -78,6 +90,7 @@ border-radius: 500px;
 padding: 20px;
 color: white;
 width: 100px;
+
 }
 .saveBtn{
     background: #4C57B6;
@@ -86,7 +99,26 @@ box-shadow: 0px 13px 25px rgba(0, 0, 0, 0.15);
 border-radius: 50px;
 padding: 20px;
 color: white;
+
 }
-
-
+ #lowerBtn button{
+    margin-top: 60px;
+ }
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
   
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 6px 8px;
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display:block;
+  } 
