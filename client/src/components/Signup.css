@@ -1,0 +1,108 @@
+.login_container{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #E1F9F4;
+}
+.top_bar{
+position: absolute;
+margin-left: 150px;
+margin-top: 50px;
+width: 300px;
+height: 300px;
+background: #FFFFFF;
+border-radius: 10px;
+}
+.logo{
+    
+    margin-left: 120px;
+    margin-top: 20px;
+    width:50px;
+    height: 55px;
+}
+.logo_container{
+  padding: 0%;
+}
+.user_login{
+   margin-left: 70px;
+
+}
+.userid{
+   margin-bottom: 10px;
+   border-radius: 3px;
+   border-color:rgba(183, 176, 176, 0.551);
+   border-width: 00.25px;
+   margin-top: -20px;
+
+}
+.pass{
+    margin-top: 10px;
+    border-radius: 3px;
+    border-width: 00.25px;
+}
+.pass1{
+    margin-top: 20px;
+    border-radius: 3px;
+    border-width: 00.25px;
+}
+.eye{
+    margin-left: -30px;
+    cursor: pointer;
+}
+.heading{
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.25px;
+color: #000000;
+opacity: 0.6;
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+margin-left: 70px;
+
+}
+.submit{
+    position: absolute;
+    width: 170px;
+    margin-left: 70px;
+    margin-top: 20px;
+    border-width: 00.25px;
+    border-radius: 3px;
+    color: #E1F9F4;
+    background: #4C57B6
+}
+.signup{
+    margin-top: 50px;
+    text-align: center;
+    color: #4C57B6;
+   font-weight: normal;
+   font-size: 10px;
+   
+}
+input::placeholder{
+    font-size: 8px;
+}
+.sign{
+    margin-top: 100px;
+    text-align: center;
+}
+.bottom_text{
+    font-size: 10px;
+    margin-top: 60px;
+    margin-left: 70px;
+}
+.text_sign{
+    text-align: center;
+    margin-top: -15px;
+    margin-right: -40px;
+}
+.account_heading{
+    margin-left: 100px;
+    opacity: 0.6;
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: 400;
+    font-size: 10px;
+}
