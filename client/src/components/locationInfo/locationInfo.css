@@ -4,7 +4,9 @@
     height: 100%;
     display: flex;
 }
-
+#right{
+    height: 100%;
+}
  
 p{
     font-size:15px;

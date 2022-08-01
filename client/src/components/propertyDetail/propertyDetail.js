@@ -25,7 +25,7 @@ export default function PropertyDetail() {
   return (
     <div id='main-container'>
       <div><LeftBar /></div>
-      <div id='rightBar'>
+      <div  id='rightBar'>
         <header>
           <div className='userName'>
             <p>User ID : 06PPD125</p>
@@ -43,6 +43,7 @@ export default function PropertyDetail() {
 
             </div>
         </header>
+        
 <nav>
 <Link to="/basicInfo"><button className='sub-btn'><i class="bi bi-1-circle"></i> Basic Info</button></Link>
 <button id="propertyDetail"><i style={mystyle} class="bi bi-2-circle"></i> Property Detail</button>

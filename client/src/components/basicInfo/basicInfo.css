@@ -27,6 +27,7 @@ margin-left: 20px;
 }
 #rightBar{
     justify-items: center;
+    height: 100%;
 }
 nav{
     background: #FFFFFF;

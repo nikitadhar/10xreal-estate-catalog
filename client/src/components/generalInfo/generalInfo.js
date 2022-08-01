@@ -24,7 +24,7 @@ export default function GeneralInfo() {
 
   return (
     <div id='main-container'>
-      <div id='LeftBar1'><LeftBar /></div>
+      <div><LeftBar /></div>
       <div id='rightBar'>
         <header>
           <div className='userName'>

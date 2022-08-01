@@ -4,7 +4,10 @@
     height: 100%;
     display: flex;
 }
-
+#rightBar{
+    height: 100%;
+    width: 100%;
+}
  
 p{
     font-size:15px;
@@ -26,16 +29,18 @@ margin-left: 20px;
  nav{
     background: #FFFFFF;
     margin-left: 60px;
+    margin-right: 60px;
 box-shadow: 10px 14px 70px rgba(0, 0, 0, 0.03);
 border-radius: 500px;
 
  }
  section{
     background: #FFFFFF;
-    margin-left: 60px;
+    margin-right: 60px;
     border-radius: 20px;
     height: 650px;
     padding: 10px;
+     
   }
  #propertyDetail{
     font-size: 20px;

@@ -3,7 +3,7 @@ import LeftBar from '../leftBar/leftBar'
 import "./basicInfo.css"
 import {Link} from "react-router-dom"
 import axios from 'axios';
-
+import { useState } from "react";
 
 export default function BasicInfo() {
   const mystyle = {
@@ -14,11 +14,29 @@ export default function BasicInfo() {
     borderDisplay:"none"
   };
 //const url="mongodb+srv://real-estate-catalog:real123@real-estate-catalog.q7wsqsz.mongodb.net/realEstateDatabase?retryWrites=true&w=majority"
-   const url1 = "http://localhost:3005/";
-  const handleClick=(req,res)=>{
-    axios.post(url1)
-    .then((response) => {
-      console.log(response);});}
+  const url= "http://localhost:3005/";
+  const [upload,setPosts] = useState({propetyType:"", price:"",propertyAge :""});
+   const handleClick =()=>{
+    console.log(upload);
+    // axios({
+    //     url: "http://localhost:3005/",
+    //     method: "POST",
+    //     headers: {
+    //     },
+    //     data: upload
+    axios.post(url,(req,res)=>{
+    console.log(res)
+      
+      
+    })
+    // })
+    .then((res)=>{
+        console.log(res);
+    }).catch((err)=>{
+        console.log(err);
+    })
+     
+}
 return (
     <div id='main-container'>
       <div ><LeftBar/></div>
@@ -52,13 +70,13 @@ return (
 <form method='POST'>
   <label>Property Type</label><br/>
   <div className='inputField' >
-  <input placeholder='select property type'/><i class="bi bi-chevron-down"></i></div><br/>
+  <input placeholder='select property type' type="text" value={upload.propetyType} onChange={(e)=>{setPosts({...upload, propetyType: e.target.value})}} id="propertType" name="propertyType"/><i class="bi bi-chevron-down"></i></div><br/>
   <label>Price</label><br/>
   <div className='inputField'>
-  <input placeholder='select price'/></div><br/>
+  <input placeholder='select price' type="text" value={upload.price} onChange={(e)=>{setPosts({...upload, price: e.target.value})}} id="price" name="price"/></div><br/>
   <label>Property Age</label><br/>
   <div className='inputField'>
-  <input placeholder="select property age"/><i class="bi bi-chevron-down"></i></div><br/>
+  <input placeholder="select property age" type="text" value={upload.propertyAge} onChange={(e)=>{setPosts({...upload, propertyAge: e.target.value})}} id="propertyAge" name="propertyAge"/><i class="bi bi-chevron-down"></i></div><br/>
   <label>Property Description</label><br/>
   <div className='inputField'>
   <input placeholder='select property description' /></div><br/>
@@ -84,6 +102,8 @@ return (
 <div id="lowerBtn">
 <button className='cancelBtn'><b>Cancel</b></button>
 <Link to="/propertyDetail"><button onClick={handleClick} className='saveBtn'><b>Save & Continue</b></button></Link>
+ 
+
 </div>
 </section>
    

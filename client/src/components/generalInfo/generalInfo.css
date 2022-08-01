@@ -4,6 +4,10 @@
     height: 100%;
     display: flex;
 }
+#rightBar{
+    height: 100%;
+
+  }
 
  
 p{
@@ -134,8 +138,5 @@ color: white;
   .dropdown:hover .dropdown-content {
     display:block;
   }
-  #LeftBar1{
-    height: 200px;
-  }
-
+  
   
