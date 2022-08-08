@@ -41,7 +41,7 @@ const Login = () => {
                })
                .then((res)=>
                {
-                navigate("/ViewProperty");
+                navigate("/V");
                 console.log(res);
                })
                .catch((err)=>
