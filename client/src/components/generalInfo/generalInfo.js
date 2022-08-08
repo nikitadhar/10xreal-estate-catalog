@@ -1,26 +1,52 @@
 import React from 'react'
-import LeftBar from '../leftBar/leftBar'
-import "./generalInfo.css"
+import LeftBar from '../leftBar/LeftBar'
+import "./GeneralInfo.css"
 import {Link} from "react-router-dom"
+import { useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+ 
+ export default function GeneralInfo() {
+  const [data,setPosts] = useState({name:"",postedBy:"",image:"", featuredPackage:"", mobile:"",saleType:"",ppdPackage:""});
+const navigate = useNavigate();
+const [setvalue] = useState("No File Chosen")
+const convertbase64 = (file)=> new Promise((res,rej)=>{
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onload = () => res(reader.result)
+  reader.onerror = (err) =>rej(err)
+})
 
-export default function GeneralInfo() {
+const afterUpload = async (e)=>{
+  console.log("Hello")
+  const file = e.target.files[0]
+  const base64 = await convertbase64(file)
+  setPosts({...data,image:base64})
+  setvalue(e.target.value)
+}
+
+const handlePosts =()=>{
+  axios({
+      url: "http://localhost:3005",
+      method: "POST",
+      headers: {
+      },
+      data: data
+     
+  }).then((res)=>{
+      // console.log(res);
+  }).catch((err)=>{
+      // console.log(err);
+  })
+  navigate("/LocationInfo");
+}
   const mystyle = {
     color: "#1F1F1F",
     background: "#FFFFFF",
     borderRadius:"50%",
     border:"#FFFFFF"
   };
-  const url1 = "http://localhost:3005/";
-  const handleClick=(req,res)=>{
-    
-    axios.post(url1)
-    .then((response) => {
-      console.log(response);
-    });
-  
-  }
-
+   
 
   return (
     <div id='main-container'>
@@ -46,10 +72,10 @@ export default function GeneralInfo() {
             </div>
         </header>
 <nav>
-<Link to="/basicInfo"><button className='sub-btn'><i class="bi bi-1-circle"></i> Basic Info</button></Link>
-<Link to="/propertyDetail"><button className='sub-btn'><i class="bi bi-2-circle"></i> Property Detail</button></Link>
+<Link to="/BasicInfo"><button className='sub-btn'><i class="bi bi-1-circle"></i> Basic Info</button></Link>
+<Link to="/PropertyDetail"><button className='sub-btn'><i class="bi bi-2-circle"></i> Property Detail</button></Link>
 <button  id="generalInfo"><i style={mystyle} class="bi bi-3-circle"></i> General Info</button>
-<Link to="/locationInfo"><button className='sub-btn'><i class="bi bi-4-circle"></i> Locatoin Info </button></Link></nav> 
+<Link to="/LocationInfo"><button className='sub-btn'><i class="bi bi-4-circle"></i> Locatoin Info </button></Link></nav> 
    <br/>
    <section>
    <div id="form-container">
@@ -57,13 +83,13 @@ export default function GeneralInfo() {
 <form method='POST'>
   <label>Name</label><br/>
   <div className='inputField'>
-  <input placeholder='Owner'/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.name} onChange={(e)=>{setPosts({...data,name: e.target.value})}}><option>Owner</option></select></div><br/>
   <label>Posted by</label><br/>
   <div className='inputField'>
-  <input placeholder='Posted By'/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.postedBy} onChange={(e)=>{setPosts({...data,postedBy: e.target.value})}}><option>posted by</option></select></div><br/>
   <label>Featured Package</label><br/>
   <div className='inputField'>
-  <input placeholder="Please Select"/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.featuredPackage} onChange={(e)=>{setPosts({...data,featuredPackage: e.target.value})}}><option>Please Select</option></select></div><br/>
    
 </form>
 </div>
@@ -71,22 +97,19 @@ export default function GeneralInfo() {
 <form>
   <label>Mobile</label><br/>
   <div className='inputField'>
-  <input placeholder='Enter Mobile Number'/></div><br/>
+  <input  value={data.mobile} onChange={(e)=>{setPosts({...data,mobile: e.target.value})}} placeholder='Enter Mobile Number'/></div><br/>
   <label>Sale Type</label><br/>
   <div className='inputField'>
-  <input placeholder='Please Select'/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.saleType} onChange={(e)=>{setPosts({...data,saleType: e.target.value})}}><option>Please Select</option></select></div><br/>
   <label>PPD Package </label><br/>
   <div className='inputField'>
-  <input placeholder='Please Select'/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.ppdPackage} onChange={(e)=>{setPosts({...data,ppdPackage: e.target.value})}}><option>Please Select</option></select></div><br/>
    </form>
 </div>
 </div>
-{/* <div id="addPhoto">
-    <div id='camera'><i class="bi bi-camera"></i></div><br/><br/>
-    <p style={{color: "#7D7D7D"}}><b>Add Photo</b></p>
-    </div> */}
+ 
     <br/>
-    <input type="file" style={{display:"none"}} name="image-upload" id="input" accept='image/*'/>
+    <input type="file" style={{display:"none"}} value={data.image} onChange={(e)=>{setPosts({...data,image: e.target.value})}} name="image-upload" id="input" accept='image/*'/>
 <div className='label'>
   <label htmlFor='input' className='image-upload'>
   <div id="camera">
@@ -96,8 +119,8 @@ Add Photo
 </div>
 
 <div id="lowerBtn">
-<Link to="/propertyDetail"><button className='previousBtn'><b>Previous</b></button></Link>
-<Link to="/locationInfo"><button onClick={handleClick}className='saveBtn'><b>Save & Continue</b></button></Link>
+<Link to="/PropertyDetail"><button className='previousBtn'><b>Previous</b></button></Link>
+<button onClick={handlePosts} className='saveBtn'><b>Save & Continue</b></button>
 </div>
    
    
@@ -111,4 +134,5 @@ Add Photo
     
     </div>
    </div>
+   
     )}

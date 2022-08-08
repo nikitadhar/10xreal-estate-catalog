@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap');
+*{
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 #main-container{
     width: 100%;
     height: 100%;
@@ -79,15 +83,19 @@ line-height: 25px;
 color: #7D7D7D;
 
 }
-.inputField {
+/* .inputField {
     display: flex;
     border-radius:3px ;
-    border: 1px solid rgb(80, 78, 78);
+     
     background: #F5F5F5;
-}
-.inputField input{
+} */
+/* .inputField input{
     padding: 7px;
     border:none;
+} */
+#selectField{
+    width: 100%;
+height: 100%;
 }
 #lowerBtn {
     display: flex;

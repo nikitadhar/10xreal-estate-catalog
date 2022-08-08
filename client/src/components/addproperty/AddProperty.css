@@ -1,0 +1,54 @@
+#mainContainer{
+    display: flex;
+    background: #F5F5F5;
+     
+}
+table{
+    border-spacing: 0px;
+}
+ 
+.subContainer2{
+    height: 100%;}
+tr{
+    background: #FFFFFF;
+    
+}
+td{
+    width: 55px;
+    border-radius: 50px;
+    
+}
+#headings{
+    color: #284E91;
+    font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 25px;
+border-radius: 5px;
+margin-left: 20px;
+ 
+}
+#headings th{
+    padding: 20px;
+    border-radius: 5px;
+    column-gap: 0px;
+}
+.valueTable{
+    color: #1F1F1F;
+    font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 25px;
+border-radius: 5px;
+ margin-left: 20px;
+ 
+ 
+}
+.valueTable td{
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 5px;
+    column-gap: 0px;
+}

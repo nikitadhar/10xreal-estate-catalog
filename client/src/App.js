@@ -1,9 +1,13 @@
  
- import BasicInfo from "./components/basicInfo/basicInfo";
+ import BasicInfo from "./components/basicInfo/BasicInfo";
  import {BrowserRouter, Routes,Route} from "react-router-dom";
-import PropertyDetail from "./components/propertyDetail/propertyDetail";
-import GeneralInfo from "./components/generalInfo/generalInfo";
-import LocationInfo from "./components/locationInfo/locationInfo";
+import PropertyDetail from "./components/propertyDetail/PropertyDetail";
+import GeneralInfo from "./components/generalInfo/GeneralInfo";
+import LocationInfo from "./components/locationInfo/LocationInfo";
+import AddProperty from "./components/addproperty/AddProperty";
+import SearchBar from "./components/searchBar/SearchBar";
+import Login from "./components/login/Login";
+import Signup from "./components/signup/Signup";
 
 
 
@@ -12,12 +16,16 @@ function App() {
      <div className="App">
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<BasicInfo/>}/>
-      <Route path="/propertyDetail" element={<PropertyDetail/>}/>
-      <Route path="/generalInfo" element={<GeneralInfo/>}/>
-      <Route path="/locationInfo" element={<LocationInfo/>}/>
-      <Route path="/basicInfo" element={<BasicInfo/>}/>
-      
+     <Route path="/" element={<Login/>}/>
+     <Route path="/Login" element={<Login/>}/>
+     <Route path="/Signup" element={<Signup/>}/>
+      <Route path="/AddProperty" element={<BasicInfo/>}/>
+      <Route path="/PropertyDetail" element={<PropertyDetail/>}/> 
+      <Route path="/GeneralInfo" element={<GeneralInfo/>}/>
+      <Route path="/LocationInfo" element={<LocationInfo/>}/>
+      <Route path="/BasicInfo" element={<BasicInfo/>}/>  
+      <Route path="/AddProperty" element={<AddProperty/>}/>
+      <Route path="/SearchBar" element={<SearchBar/>} />
       
 
       

@@ -1,10 +1,26 @@
 const express=require("express")
 const mongoose=require("mongoose")
 const app = express();
-const userInfoModel =require("./schema") 
+const cors=require("cors")
+const dotenv=require("dotenv")
+dotenv.config({path:"./config.env"})
+const userInfoModel =require("./schema"); 
+ // merge code start
+ 
+const loginroute=require("./routes/login")
+const signuproute=require("./routes/signup1")
+require('dotenv').config();
+
+app.get("/", (req, res)=> {
+  res.send("realestate login")
+});
+app.use("/login", loginroute);
+app.use("/signup1", signuproute);
+
+// merge code end
 app.use(express.json());
  app.use(express.urlencoded({extended: false}));
-  
+  app.use(cors())
 const port = process.env.PORT || 3005;
 
 app.listen(port, () => {
@@ -21,14 +37,25 @@ app.listen(port, () => {
 // }).catch(()=>{
 //    console.log("no connection");
 // })
-const mongodb="mongodb+srv://real-estate-catalog:real123@real-estate-catalog.q7wsqsz.mongodb.net/realEstateDatabase?retryWrites=true&w=majority"
+const mongodb=process.env.DATABASE;
 mongoose.connect(mongodb, ()=> {
   console.log("server is connected to db")
 }, (err)=> {
   console.log(err)
 })
- app.post("/", async(req,res)=>{
-  var newUserInfoModel = userInfoModel({
+ app.get("/addProperty", (req,res)=>{
+  userInfoModel.find().then((data)=>{
+res.status(200).send({data:data})
+console.log(data)
+  }).catch((err)=>{
+    res.status(400).send(err)
+    console.log(err)
+  })
+ })
+app.post("/",(req,res)=>{
+  // console.log(req.body)
+     userInfoModel.create({
+     
  // Basic Info
     propertyType:req.body.propertyType,
     price:req.body.price,
@@ -75,8 +102,13 @@ electricity:req.body.electricity,
     pincode:req.body.pincode,
     landmark:req.body.landmark,
     longitude:req.body.longitude
+}).then((data)=>{
+  res.status(200).send(data)
+  console.log(req.body)
+}).catch((err)=>{
+  console.log(err)
 })
- let result= await newUserInfoModel.save();
- res.send("successfully")
- console.log(result)
- })
+//  let result= await newUserInfoModel.save();
+//  res.send("successfully")
+//  console.log(result)
+ }) 

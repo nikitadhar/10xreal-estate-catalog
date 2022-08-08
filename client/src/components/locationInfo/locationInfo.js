@@ -1,10 +1,31 @@
-import React from 'react'
-import "./locationInfo.css"
-import LeftBar from '../leftBar/leftBar'
+import React,{useState} from 'react'
+import "./LocationInfo.css"
+import LeftBar from '../leftBar/LeftBar'
 import {Link} from "react-router-dom"
-import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+ 
+import axios from 'axios';
+ export default function LocationInfo() {
+    
+  const [data,setPosts] = useState({email:"",area:"", address:"", latitude:"",city:"",pincode:"",landmark:"",longitude:""});
+ 
+  const handlePosts =()=>{
+    axios({
+        url: "http://localhost:3005",
+        method: "POST",
+        headers: {
+        },
+        data: data 
+       
+    }).then((res)=>{
+        // console.log(res);
+    }).catch((err)=>{
+        // console.log(err);
+    })
+    navigate("/AddProperty");
+}
 
-export default function locationInfo() {
+
   const mystyle = {
     color: "#1F1F1F",
     background: "#FFFFFF",
@@ -12,19 +33,10 @@ export default function locationInfo() {
     border:"#FFFFFF"
   };
 
-  const url1 = "http://localhost:3005/";
-  const handleClick=(req,res)=>{
-    
-    axios.post(url1)
-    .then((response) => {
-      console.log(response);
-    });
-  
-  }
-
-  return (
+  const navigate = useNavigate();
+   return ( 
     <div id='main-container'>
-      <div><LeftBar  /></div>
+      <div style={{height:"800px"}}><LeftBar  /></div>
       <div id='rightBar'>
         <header>
           <div className='userName'>
@@ -42,26 +54,31 @@ export default function locationInfo() {
             <p style={{marginLeft:"40px"}}><b>ADD NEW PROPERTY</b></p></div>
         </header>
 <nav>
-<Link to="/basicInfo"><button className='sub-btn'><i class="bi bi-1-circle"></i> Basic Info</button></Link>
-<Link to="/propertyDetail"><button className='sub-btn'><i class="bi bi-2-circle"></i> Property Detail</button></Link>
-<Link to="/generalInfo"><button className='sub-btn'><i class="bi bi-3-circle"></i> General Info</button></Link>
-<Link to="/locationInfo"><button id="locationInfo"><i style={mystyle} class="bi bi-4-circle"></i> Locatoin Info </button></Link></nav> 
+<Link to="/BasicInfo"><button className='sub-btn'><i class="bi bi-1-circle"></i> Basic Info</button></Link>
+<Link to="/PropertyDetail"><button className='sub-btn'><i class="bi bi-2-circle"></i> Property Detail</button></Link>
+<Link to="/GeneralInfo"><button className='sub-btn'><i class="bi bi-3-circle"></i> General Info</button></Link>
+<Link to="/LocationInfo"><button id="locationInfo"><i style={mystyle} class="bi bi-4-circle"></i> Locatoin Info </button></Link></nav> 
    <div id="form-container">
 <div className='sub-formContainer'>
 <form method='POST'>
 
   <label>Email</label><br/>
   <div className='inputField'>
-  <input placeholder='Email' name='email'/></div><br/>
+  <input value={data.email} onChange={(e)=>{setPosts({...data,email: e.target.value})}} placeholder='Email' name='email'/></div><br/>
   <label>Area</label><br/>
   <div className='inputField'>
-  <input placeholder='Select Area' name='area'/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.area} onChange={(e)=>{setPosts({...data,area: e.target.value})}}><option>Select Area</option>
+  <option>1600</option>
+  <option>2500</option>
+  <option>3600</option>
+  </select></div><br/>
+   
   <label>Address</label><br/>
   <div className='inputField'>
-  <input placeholder="Address" name='address'/></div><br/>
+  <input value={data.address} onChange={(e)=>{setPosts({...data,address: e.target.value})}} placeholder="Address" name='latitude'/></div><br/>
   <label>Latitude</label><br/>
   <div className='inputField'>
-  <input placeholder="Latitude" name='latitude'/><br/></div>
+  <input value={data.latitude} onChange={(e)=>{setPosts({...data,latitude: e.target.value})}} placeholder="Latitude" name='latitude'/><br/></div>
   
 </form>
 </div>
@@ -69,22 +86,34 @@ export default function locationInfo() {
 <form method='POST'>
   <label>City</label><br/>
   <div className='inputField'>
-  <input placeholder='Select City' name='city'/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.city} onChange={(e)=>{setPosts({...data,city: e.target.value})}}>
+    <option>Select city</option>
+    <option>Bhopal</option>
+    <option>Indore</option>
+    <option>Hydrabad</option>
+    <option>pune</option>
+    </select></div><br/>
+   
   <label>Pincode</label><br/>
   <div className='inputField'>
-  <input placeholder='Select Pincode' name='pincode'/><i class="bi bi-chevron-down"></i></div><br/>
+  <select value={data.pincode} onChange={(e)=>{setPosts({...data,pincode: e.target.value})}}>
+    <option>Select Pincode</option>
+    <option>46098</option>
+    <option>67940</option>
+    <option>642003</option>
+    </select></div><br/>
   <label>Landmark</label><br/>
   <div className='inputField'>
-  <input placeholder='Landmark' name='landmark'/></div><br/>
+  <input value={data.landmark} onChange={(e)=>{setPosts({...data,landmark: e.target.value})}} placeholder='Landmark' name='landmark'/></div><br/>
   <label>Longitude</label><br/>
   <div className='inputField'>
-  <input placeholder="Longitude" name='longitude'/></div><br/>
+  <input value={data.longitude} onChange={(e)=>{setPosts({...data,longitude: e.target.value})}} placeholder="Longitude" name='longitude'/></div><br/>
   </form>
 </div>
 </div>
 <div id="lowerBtn">
-<Link to="/generalInfo"><button className='previousBtn'><b>Previous</b></button></Link>
-<button onClick={handleClick} className='saveBtn'><b>Add Property</b></button>
+<Link to="/GeneralInfo"><button className='previousBtn'><b>Previous</b></button></Link>
+<button onClick={handlePosts}  className='saveBtn' ><b>Add Property</b></button>
 </div>
    
    
@@ -98,4 +127,5 @@ export default function locationInfo() {
     
     </div>
    </div>
+    
     )}
