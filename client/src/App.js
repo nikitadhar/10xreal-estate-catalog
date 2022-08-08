@@ -10,7 +10,7 @@ function App() {
       <Route  path="/Signup" element={<Signup/>}></Route>
     </Routes>
     </BrowserRouter>
-    
-  );
+
+  )
 }
 export default App;
