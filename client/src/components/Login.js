@@ -1,45 +1,102 @@
-import { Link } from "react-router-dom";
+import { useState } from "react"
+import { Link ,useNavigate} from "react-router-dom";
+import axios from "axios";
 import "./Login.css"
-import Logo from "./logo.jpg"
-const Login=()=>{
-    const [login, setLogin] = useState({userid: "", password: ""})
-    const handleLogin = ()=> {
-        axios({
-            url: "http://localhost:3001/user/login",
-            method: "POST",
-            headers: {
-            },
-            data: {userid: login.userid, password: login.password}
-        }).then((loginData)=> {
-           localStorage.setItem("authorization", loginData.data.authToken);
-        }).catch((err)=> {
-            console.log(err)
-        })
+const Login = () => {
+
+    const [userdata, setData] = useState({mail: "", password: ""})
+    const navigate = useNavigate();
+    function handlemail(e){
+            const mail = e.target.value;
+            setData(prevForm => ({...prevForm,mail:mail}))
+     
     }
-    return(
-        <>
-    <div>
+  
+    function handlepassword(e){
+            const password = e.target.value;
+            setData(prevForm => ({...prevForm,password:password}))
+       
+    }
+  
+    function handlelogin(e) {
+        e.preventDefault();
+        if(userdata.mail.length === 0)
+        {
+            alert("Please enter your e-mail");
+        }
+        else if(userdata.password.length < 6)
+        {
+            alert("Please enter a valid password");
+        }
+        else
+        {
+            console.log(userdata);
+               axios({
+                url:"http://localhost:3001/login/poat",
+                method : "POST",
+                headers :{
+
+                },
+                data:userdata
+               })
+               .then((res)=>
+               {
+                navigate("/ViewProperty");
+                console.log(res);
+               })
+               .catch((err)=>
+               {
+                alert("UserID and Password does not match");
+                console.log(err);
+               })
+                
+                
+                setData({mail:"",password:""})
+                
+            }
+
+    
+          
+    }
+
+    return (
         <div className="login_container">
             <div className="top_bar">
-                <div className="logo_container">
-                    <img className="logo"  src={Logo} alt="logo"></img>
-                    <h6 className="heading">Enter you credentials to access your account</h6>
+                <div className="logo">
+                 <h1 className="logo_heading">Logo</h1>
                 </div>
-                <div className="user_login">
-                <input className="userid" type="text" onChange={(e)=> {setLogin({...login, userName: e.target.value})}}/>
-                <input className="pass"type="password" onChange={(e)=> {setLogin({...login, password: e.target.value})}}/>
-                <i className="eye" ></i>
-                </div>
-                <div>
-                <button type="submit"  className="submit">sign in</button>
-                </div>
-                  <Link to="Signup"><div className="signup">sign up</div></Link>
-                  <div className="bottom_text">Don't have any account ?<Link to="Signup"><div className="text_sign">sign up</div></Link></div>
+
+                <form className="login_form" onSubmit={handlelogin}>
+                    <div >
+                        <p className="login_heading">Enter your credentials details</p>
+                    </div>
+                    <br />
+                    <div className="form-input" >
+                        <input className="userid" type="email" placeholder="Mail ID" onChange = {handlemail}></input>
+                    </div>
+                    <br />
+                    <div className="form-input">
+                        <input className="pass" type="password" placeholder="Password" onChange={handlepassword}></input>
+                    </div>
+                    <br />
+
+                    <br />
+                    <div className="form-input">
+                        <input className="submit" value="Sign in" type="submit" />
+                    </div>
+                    <br />
+
+                    <div>
+                        <Link to="/Signup"><a className="signup">Sign up</a></Link>
+                    </div>
+                </form>
             </div>
-              
+
+            <div className="account_box">
+                <span className="span">Don't have an account?   </span>
+                <Link to="/Signup"><a className="sign">sign up</a></Link>
+            </div>
         </div>
-    </div>
-        </>
     )
 }
 export default Login;

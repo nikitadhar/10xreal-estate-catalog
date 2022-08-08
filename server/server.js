@@ -8,7 +8,14 @@ require('dotenv').config();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
-mongoose.connect("mongodb+srv://real-estate-catalog:real123@real-estate-catalog.q7wsqsz.mongodb.net/10x real-estate?retryWrites=true&w=majority", (data)=> {
+app.listen(3001, (err)=> {
+    if(!err) {
+        console.log("Server started at port 3001")
+    } else {
+        console.log(err);
+    }
+});
+mongoose.connect("mongodb+srv://real-estate-catalog:real123@real-estate-catalog.q7wsqsz.mongodb.net/10x?retryWrites=true&w=majority", (data)=> {
     console.log("Successfully connected to db");
 }, (err)=> {
     console.log(err)
@@ -18,10 +25,3 @@ app.get("/", (req, res)=> {
 });
 app.use("/login", loginroute);
 app.use("/signup1", signuproute);
-app.listen(3001, (err)=> {
-    if(!err) {
-        console.log("Server started at port 3001")
-    } else {
-        console.log(err);
-    }
-});

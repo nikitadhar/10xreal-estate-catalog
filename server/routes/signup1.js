@@ -19,4 +19,4 @@ res.status(200).send(`${req.body.mail} added successfully`);
     }
     
 });
-module.exports=signup1;
+module.exports=router;

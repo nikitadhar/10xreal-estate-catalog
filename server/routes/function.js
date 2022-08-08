@@ -1,8 +1,8 @@
 const signupModal = require("../Models/signup");
 const bcrypt = require("bcryptjs");
-const checkExistingUser = async (username)=> {
+const checkExistingUser = async (mail)=> {
     let existingUser = false;
-    await signupModal.find({username: username}).then((userData)=> {
+    await signupModal.find({mail: mail}).then((userData)=> {
         if(userData.length) {
             existingUser = true;
         }
