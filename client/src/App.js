@@ -6,8 +6,8 @@ import GeneralInfo from "./components/generalInfo/GeneralInfo";
 import LocationInfo from "./components/locationInfo/LocationInfo";
 import AddProperty from "./components/addproperty/AddProperty";
 import SearchBar from "./components/searchBar/SearchBar";
-import Login from "./components/login/Login";
-import Signup from "./components/signup/Signup";
+// import Login from "./components/login/Login";
+// import Signup from "./components/signup/Signup";
 
 
 
@@ -16,10 +16,10 @@ function App() {
      <div className="App">
     <BrowserRouter>
     <Routes>
-     <Route path="/" element={<Login/>}/>
-     <Route path="/Login" element={<Login/>}/>
-     <Route path="/Signup" element={<Signup/>}/>
-      <Route path="/AddProperty" element={<BasicInfo/>}/>
+     <Route path="/" element={<BasicInfo/>}/>
+     {/* <Route path="/Login" element={<Login/>}/>
+     <Route path="/Signup" element={<Signup/>}/> */}
+      <Route path="/AddProperty" element={<AddProperty/>}/>
       <Route path="/PropertyDetail" element={<PropertyDetail/>}/> 
       <Route path="/GeneralInfo" element={<GeneralInfo/>}/>
       <Route path="/LocationInfo" element={<LocationInfo/>}/>

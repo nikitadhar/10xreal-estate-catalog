@@ -8,6 +8,7 @@ export default function AddProperty() {
      useEffect(()=>{
     fetch("http://localhost:3005",{
      }).then((data)=>data.json()).then((user)=>{
+      console.log(user)
       setUser(user.data)}) },[])
     return (<>
     <div id='mainContainer'>

@@ -2,42 +2,23 @@ import React from 'react'
 import LeftBar from '../leftBar/LeftBar'
 import "./GeneralInfo.css"
 import {Link} from "react-router-dom"
-import { useState} from 'react'
+import { useState,useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+ 
+import { PassData } from '../context/DataContext'
+
  
  export default function GeneralInfo() {
   const [data,setPosts] = useState({name:"",postedBy:"",image:"", featuredPackage:"", mobile:"",saleType:"",ppdPackage:""});
 const navigate = useNavigate();
-const [setvalue] = useState("No File Chosen")
-const convertbase64 = (file)=> new Promise((res,rej)=>{
-  const reader = new FileReader()
-  reader.readAsDataURL(file)
-  reader.onload = () => res(reader.result)
-  reader.onerror = (err) =>rej(err)
-})
+const formData=useContext(PassData);
+  console.log(formData);
+ 
 
-const afterUpload = async (e)=>{
-  console.log("Hello")
-  const file = e.target.files[0]
-  const base64 = await convertbase64(file)
-  setPosts({...data,image:base64})
-  setvalue(e.target.value)
-}
-
+ 
 const handlePosts =()=>{
-  axios({
-      url: "http://localhost:3005",
-      method: "POST",
-      headers: {
-      },
-      data: data
-     
-  }).then((res)=>{
-      // console.log(res);
-  }).catch((err)=>{
-      // console.log(err);
-  })
+   
+  formData.updatedata(data)
   navigate("/LocationInfo");
 }
   const mystyle = {

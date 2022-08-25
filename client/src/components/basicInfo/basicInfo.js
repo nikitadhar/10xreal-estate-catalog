@@ -1,28 +1,20 @@
 
-import React, {useState } from 'react'
+import React, {useState,useContext } from 'react'
 import LeftBar from '../leftBar/LeftBar'
 import "./BasicInfo.css"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-
- 
-function BasicInfo() {
+import { PassData } from '../context/DataContext';
+ function BasicInfo() {
    const [data, setPosts] = useState({ propertyType: "", price: "", propertyAge: "", propertyDescription: "", ownership: "", negotable: "", propertyApproved: "", bankLoan: "" });
   const navigate = useNavigate();
+  let {updatedata}=useContext(PassData);
+  // console.log("memory:" + JSON.stringfy(formData));
   const handlePosts =()=>{
-    axios({
-        url: "http://localhost:3005",
-        method: "POST",
-        headers: {
-        },
-        data: data
-       
-    }).then((res)=>{
-        // console.log(res);
-    }).catch((err)=>{
-        // console.log(err);
-    })
+     debugger
+    // formData.updatedata(data)
+    setPosts(updatedata)
+    updatedata=data
     navigate("/PropertyDetail");
 }
 
@@ -155,15 +147,17 @@ function BasicInfo() {
 
 
 
+      
  
       </div>
- 
+       
+       
 
-
-    </div>
-
-  )
-
+</div>     
+    )
+   
+     
+     
 }
 export default BasicInfo;
 

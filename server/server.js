@@ -5,19 +5,7 @@ const cors=require("cors")
 const dotenv=require("dotenv")
 dotenv.config({path:"./config.env"})
 const userInfoModel =require("./schema"); 
- // merge code start
- 
-const loginroute=require("./routes/login")
-const signuproute=require("./routes/signup1")
-require('dotenv').config();
-
-app.get("/", (req, res)=> {
-  res.send("realestate login")
-});
-app.use("/login", loginroute);
-app.use("/signup1", signuproute);
-
-// merge code end
+  
 app.use(express.json());
  app.use(express.urlencoded({extended: false}));
   app.use(cors())
@@ -43,7 +31,7 @@ mongoose.connect(mongodb, ()=> {
 }, (err)=> {
   console.log(err)
 })
- app.get("/addProperty", (req,res)=>{
+ app.get("/", (req,res)=>{
   userInfoModel.find().then((data)=>{
 res.status(200).send({data:data})
 console.log(data)
@@ -104,10 +92,12 @@ electricity:req.body.electricity,
     longitude:req.body.longitude
 }).then((data)=>{
   res.status(200).send(data)
+  console.log(data)
   console.log(req.body)
 }).catch((err)=>{
   console.log(err)
 })
+
 //  let result= await newUserInfoModel.save();
 //  res.send("successfully")
 //  console.log(result)

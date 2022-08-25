@@ -1,26 +1,20 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import "./PropertyDetail.css"
 import LeftBar from '../leftBar/LeftBar'
 import {Link} from "react-router-dom"
-import axios from "axios"
+ 
 import { useNavigate } from "react-router-dom";
+import { PassData } from '../context/DataContext'
+ 
 
 export default function PropertyDetail() {
   const [data,setPosts] = useState({length:"",totalArea:"", noOfBhk:"", attached:"",furnished:"",lift:"",facing:"",breath:"",areaUnit:"",noOfFloor:"",westernToilet:"",carParking:"",electricity:""});
   const navigate = useNavigate();
+  const formData=useContext(PassData);
+  // console.log(formData);
   const handlePosts =()=>{
-    axios({
-        url: "http://localhost:3005",
-        method: "POST",
-        headers: {
-        },
-        data: data 
-       
-    }).then((res)=>{
-        // console.log(res);
-    }).catch((err)=>{
-        // console.log(err);
-    })
+    
+    formData.updatedata(data)
     navigate("/GeneralInfo");
 }
 
