@@ -4,17 +4,21 @@ import LeftBar from '../leftBar/LeftBar'
 import "./BasicInfo.css"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-import { PassData } from '../context/DataContext';
+// import { PassData } from '../context/DataContext';
+ import {PassData} from "../../App"
  function BasicInfo() {
+  const {condata,setcondata}=useContext(PassData);
+   
    const [data, setPosts] = useState({ propertyType: "", price: "", propertyAge: "", propertyDescription: "", ownership: "", negotable: "", propertyApproved: "", bankLoan: "" });
   const navigate = useNavigate();
   let {updatedata}=useContext(PassData);
   // console.log("memory:" + JSON.stringfy(formData));
   const handlePosts =()=>{
-     debugger
+    //  debugger
     // formData.updatedata(data)
     setPosts(updatedata)
     updatedata=data
+    setcondata({...condata,...data})
     navigate("/PropertyDetail");
 }
 

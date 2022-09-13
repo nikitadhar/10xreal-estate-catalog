@@ -8,13 +8,22 @@ import AddProperty from "./components/addproperty/AddProperty";
 import SearchBar from "./components/searchBar/SearchBar";
 // import Login from "./components/login/Login";
 // import Signup from "./components/signup/Signup";
+ 
+import React, { useState } from "react";
+export const PassData=React.createContext({})
+
+
+
+ 
 
 
 
 function App() {
+  const[condata,setcondata]=useState({});
   return (
      <div className="App">
-    <BrowserRouter>
+      <PassData.Provider value={{condata,setcondata}}>
+      <BrowserRouter>
     <Routes>
      <Route path="/" element={<BasicInfo/>}/>
      {/* <Route path="/Login" element={<Login/>}/>
@@ -26,15 +35,12 @@ function App() {
       <Route path="/BasicInfo" element={<BasicInfo/>}/>  
       <Route path="/AddProperty" element={<AddProperty/>}/>
       <Route path="/SearchBar" element={<SearchBar/>} />
-      
-
-      
-
-
-      <Route/>
+       <Route/>
     </Routes>
     </BrowserRouter>
  
+      </PassData.Provider>
+   
     </div>
   );
 }

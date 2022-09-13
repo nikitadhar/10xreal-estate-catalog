@@ -4,17 +4,23 @@ import LeftBar from '../leftBar/LeftBar'
 import {Link} from "react-router-dom"
  
 import { useNavigate } from "react-router-dom";
-import { PassData } from '../context/DataContext'
+// import { PassData } from '../context/DataContext'
+import {PassData} from "../../App"
+ 
  
 
 export default function PropertyDetail() {
+  const {condata,setcondata}=useContext(PassData);
   const [data,setPosts] = useState({length:"",totalArea:"", noOfBhk:"", attached:"",furnished:"",lift:"",facing:"",breath:"",areaUnit:"",noOfFloor:"",westernToilet:"",carParking:"",electricity:""});
   const navigate = useNavigate();
   const formData=useContext(PassData);
   // console.log(formData);
   const handlePosts =()=>{
     
-    formData.updatedata(data)
+    // formData.updatedata(data)
+    
+    setcondata({...condata,...data})
+     
     navigate("/GeneralInfo");
 }
 

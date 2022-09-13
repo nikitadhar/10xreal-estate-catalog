@@ -3,10 +3,12 @@ import "./LocationInfo.css"
 import LeftBar from '../leftBar/LeftBar'
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-import { PassData } from '../context/DataContext';
+// import { PassData } from '../context/DataContext';
+import {PassData} from "../../App"
  
 import axios from 'axios';
  export default function LocationInfo() {
+  const {condata,setcondata}=useContext(PassData);
     
   const [data,setPosts] = useState({email:"",area:"", address:"", latitude:"",city:"",pincode:"",landmark:"",longitude:""});
   const navigate = useNavigate();
@@ -18,22 +20,25 @@ import axios from 'axios';
   // console.log(storeData)
   
   const handlePosts =()=>{
+    const finaldata={...condata,...data}
+    console.log(finaldata)
    setPosts(updatedata)
-    console.log("new :" + updatedata)
+    // console.log("new :" + updatedata)
     axios({
         url: "http://localhost:3005",
         method: "POST",
         headers: {
         },
-        data: data
+        data: finaldata
        
     }).then((res)=>{
-        console.log(res);
+      navigate("/AddProperty");
+     
     }).catch((err)=>{
         console.log(err);
     })
    
-    navigate("/AddProperty");
+    
 }
 
 
