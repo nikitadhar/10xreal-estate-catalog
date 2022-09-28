@@ -4,25 +4,13 @@ import "./GeneralInfo.css"
 import {Link} from "react-router-dom"
 import { useState,useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
- 
-// import { PassData } from '../context/DataContext'
-
 import {PassData} from "../../App"
- 
  export default function GeneralInfo() {
   const {condata,setcondata}=useContext(PassData);
   const [data,setPosts] = useState({name:"",postedBy:"",image:"", featuredPackage:"", mobile:"",saleType:"",ppdPackage:""});
 const navigate = useNavigate();
-// const formData=useContext(PassData);
-//   console.log(formData);
- 
-
- 
 const handlePosts =()=>{
-   
-  // formData.updatedata(data)
   setcondata({...condata,...data})
-   
   navigate("/LocationInfo");
 }
   const mystyle = {

@@ -1,6 +1,7 @@
 const express=require("express")
 const mongoose=require("mongoose")
 const app = express();
+const signupRoute=require("./signup")
 const cors=require("cors")
 const dotenv=require("dotenv")
 dotenv.config({path:"./config.env"})
@@ -14,17 +15,7 @@ const port = process.env.PORT || 3005;
 app.listen(port, () => {
   console.log("Server is up listening on port:" + port);
 });
-//const DB="mongodb+srv://real-estate-catalog:real123@real-estate-catalog.q7wsqsz.mongodb.net/?retryWrites=true&w=majority"
-// mongoose.connect(mongodb,{
-// useNewUrlParser:true,
-// useCreateIndex:true,
-// useUnifiedTopology:true,
-// useFindAndModify:false
-// }).then(()=>{
-//   console.log("Connection Successful");
-// }).catch(()=>{
-//    console.log("no connection");
-// })
+ 
 const mongodb=process.env.DATABASE;
 mongoose.connect(mongodb, ()=> {
   console.log("server is connected to db")
@@ -32,7 +23,7 @@ mongoose.connect(mongodb, ()=> {
   console.log(err)
 })
  app.get("/", (req,res)=>{
-  userInfoModel.find().then((data)=>{
+   userInfoModel.find().then((data)=>{
 res.status(200).send({data:data})
  
   }).catch((err)=>{
@@ -41,6 +32,7 @@ res.status(200).send({data:data})
   })
  })
 app.post("/",(req,res)=>{
+  
   console.log(req.body)
      userInfoModel.create(req.body).then((data)=>{
   res.status(200).send(data)
@@ -54,7 +46,7 @@ app.post("/",(req,res)=>{
 //  console.log(result)
  }) 
 
-
+app.use("/signup",signupRoute)
 
 
  

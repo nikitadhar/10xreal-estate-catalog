@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import "./AddProperty.css"
 import LeftBar from '../leftBar/LeftBar';
 import SearchBar from '../searchBar/SearchBar';
+import { Link } from 'react-router-dom';
 
 export default function AddProperty() {
     const [user,setUser]=useState([]);
@@ -22,7 +23,7 @@ export default function AddProperty() {
             <div class="dropdown">
               <span>  <i class="bi bi-chevron-down"></i> </span>
               <div class="dropdown-content">
-                <p>LogOut</p>
+           <Link to="/Login">     <p>LogOut</p></Link>
               </div>
             </div><br />
           </div><br /><hr />

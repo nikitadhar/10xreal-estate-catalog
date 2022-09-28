@@ -3,28 +3,16 @@ import "./LocationInfo.css"
 import LeftBar from '../leftBar/LeftBar'
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-// import { PassData } from '../context/DataContext';
 import {PassData} from "../../App"
- 
 import axios from 'axios';
  export default function LocationInfo() {
-  const {condata,setcondata}=useContext(PassData);
-    
-  const [data,setPosts] = useState({email:"",area:"", address:"", latitude:"",city:"",pincode:"",landmark:"",longitude:""});
+const {condata,setcondata}=useContext(PassData);
+    const [data,setPosts] = useState({email:"",area:"", address:"", latitude:"",city:"",pincode:"",landmark:"",longitude:""});
   const navigate = useNavigate();
-  const {updatedata}=useContext(PassData);
- 
-  // const [storeData, setStoreData]=useState([])
-  
-  // setStoreData(formData.data)
-  // console.log(storeData)
-  
-  const handlePosts =()=>{
+   const handlePosts =()=>{
     const finaldata={...condata,...data}
     console.log(finaldata)
-   setPosts(updatedata)
-    // console.log("new :" + updatedata)
-    axios({
+  axios({
         url: "http://localhost:3005",
         method: "POST",
         headers: {

@@ -1,0 +1,67 @@
+
+
+
+ body{
+    background-color:#E1F9F4 ;
+   
+ }
+ .top_bar{
+    position: absolute;
+    justify-items: center;
+    background-color: #FFFFFF;
+    top: 20%;
+    left: 30%;
+    border-radius: 10px;
+    height: 400px;
+    width: 450px;
+    text-align: center;
+    
+    
+ 
+ }
+  
+ .logo_heading{
+    position: absolute;
+    width: 92px;
+    height: 18px;
+    left: 160px;
+    top: 10px;
+    color: #4C57B6;}
+    .field{
+        width: 350px;
+        height: 40px;
+        border: 1px solid #E2E2E2;
+        border-radius: 5px;
+        color: #000000;
+        opacity: 0.5;
+}
+form{
+  margin-top: 80px; 
+  padding: 0px;  
+}
+.submit{
+    width: 350px;
+    height: 40px;
+    background: #4C57B6;
+border-radius: 5px;
+color: #FFFFFF;
+letter-spacing: 0.25px;
+font-size: 15px;
+border-style: none;
+}
+a{
+    letter-spacing: 0.25px;
+    color: #4C57B6;
+    text-decoration: none;
+}
+.account_box{
+    position: absolute;
+    top: 90%;
+    left: 45%;
+    display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.25px;
+color: #352D66;
+
+}
