@@ -1,11 +1,10 @@
 const express=require("express")
 const mongoose=require("mongoose")
 const app = express();
-const signupRoute=require("./signup")
 const cors=require("cors")
 const dotenv=require("dotenv")
 dotenv.config({path:"./config.env"})
-const userInfoModel =require("./schema"); 
+const {signupModal,userInfoModel} =require("./schema"); 
   
 app.use(express.json());
  app.use(express.urlencoded({extended: false}));
@@ -39,14 +38,51 @@ app.post("/",(req,res)=>{
  
 }).catch((err)=>{
   console.log(err)
+})})
+
+app.post("/login",(req,res)=>{
+  const {email,password}=req.body
+  signupModal.findOne({email:email},(err,user)=>{
+    if(user){
+      if(password === user.password){
+        console.log(req.body)
+        res.status(200).send({message:"Login Successfull",user:user})
+
+
+      } else{
+        res.status(400).send({message:"Password didn't match"})
+        
+      }
+    } else{
+      res.status(400).send({message:"User not register"})
+    }
+  })
+})
+app.post("/register",(req,res)=>{
+  const {email,password}=req.body
+  signupModal.findOne({email:email},(err,user)=>{
+    if(user){
+      res.send({message:"User already register"})
+    }else{
+      const user=new signupModal({
+        email,
+        password
+      })
+     console.log(req.body)
+      user.save(err=>{
+        if(err){
+          res.send(err)
+        } else{
+          res.send({message: "Successfully Register"})
+        }
+//       
+      })
+    }
+  })
+  
 })
 
-//  let result= await newUserInfoModel.save();
-//  res.send("successfully")
-//  console.log(result)
- }) 
 
-app.use("/signup",signupRoute)
 
 
  

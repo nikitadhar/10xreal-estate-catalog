@@ -3,87 +3,52 @@ import axios from "axios"
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css"
 const Signup = () => {
-    const [userdata, Setval] = useState({
-        mail: "",
-        password: "",
-        confirmpassword: ""
+    const navigate=useNavigate();
+    const[user,setUser]=useState({
+        email:"",
+        password:"",
+        cpassword:""
     })
-    const navigate = useNavigate();
-    function handlemail(e) {
-        const mail = e.target.value;
-        Setval(prevForm => ({ ...prevForm, mail: mail }))
+    const handleClick=e=>{
+    const{name, value}=e.target
+      setUser({
+        ...user,[name]:value
+      })
     }
-    function handlepassword(e) {
-        const password = e.target.value;
-        Setval(prevForm => ({ ...prevForm, password: password }))
-    }
-    function handleconfirm(e) {
-        Setval(prevForm => ({ ...prevForm, confirmpassword: e.target.value }))
-    }
-    function handlesignup(e) {
-        e.preventDefault();
-        if (userdata.mail.length === 0) {
-            alert("Please Enter your e-mail");
+    const register=()=>{
+        const {email, password, cpassword}=user
+    
+        if(email && password && cpassword && (password===cpassword)){
+            //  axios.post("http://localhost:3005/register",user)
+             axios.post("https://real-estate-server10.herokuapp.com/",user)
+           
+          
+            .then(res=>console.log(res))
+            navigate("/Login");
         }
-        else if (userdata.password.length < 6) {
-            alert("Please enter a valid password of length less than 6 character");
+        else{
+            alert("Invalid")
         }
-        else {
-            if (userdata.password !== userdata.confirmpassword) {
-                alert("Password doesn't match");
-            }
-            else {
-                axios({
-                    url: "http://localhost:3001/signup1/signup",
-                    method: "POST",
-                    headers: {
-                    },
-                    data: userdata
-                })
-                    .then((res) => {
-                        navigate("/");
-                        console.log(res);
-                    })
-                    .catch((err) => {
-                        alert('User Already exists')
-                        // console.log(err);
-                    })
-                Setval({ mail: "", password: "", confirmpassword: "" })
-            }
-        }
+       
     }
+   
     return (
-        <div className="login_container">
-            <div className="top_bar">
-                <div className="logo">
-                    <h1 className="logo_heading">Logo</h1>
-                </div>
-                <form className="login_form" onSubmit={handlesignup}>
-                    <div >
-                        <p className="signup_heading">Create New Account</p>
-                    </div>
-                    <br />
-                    <div className="form-input">
-                        <input className="field" type="email" placeholder="Mail ID" onChange={handlemail}></input>
-                    </div>
-                    <br />
-                    <div className="form-input">
-                        <input className="field" type="password" placeholder="Password" onChange={handlepassword}></input>
-                    </div>
-                    <br />
-                    <div className="form-input">
-                        <input className="field" type="password" placeholder="Confirm Password" onChange={handleconfirm} ></input>
-                    </div>
-                    <br />
-                    <br />
-                    <div className="form-input">
-                        <input className="submit" value="Sign up" type="submit" />
-                    </div>
-                    <br />
-                </form>
-            </div>
+<div className="login_container">
+ <div className="top_bar">
+<div className="logo">
+<h1 className="logo_heading">Logo</h1></div>
+<form className="login_form">
+<div ><p className="signup_heading">Create New Account</p></div><br />
+<div className="form-input">
+<input className="field" type="email" name="email" value={user.name} placeholder="Mail ID" onChange={handleClick}></input></div><br />
+<div className="form-input">
+<input className="field" type="password" name="password" value={user.password} placeholder="Password" onChange={handleClick}></input></div><br />
+<div className="form-input">
+<input className="field" type="password" name="cpassword" value={user.cpassword} placeholder="Confirm Password" onChange={handleClick} ></input></div><br /><br />
+<div className="form-input">
+<input className="submit" value="Sign up" type="submit" onClick={register} /></div><br /></form></div>
             <div className="account_box">
-                <Link to="/Login"><a className="signin">Sign in</a></Link>
+                <Link to="/Login"><a href="?Login" className="signin">Sign in</a></Link>
             </div>
         </div>
     )

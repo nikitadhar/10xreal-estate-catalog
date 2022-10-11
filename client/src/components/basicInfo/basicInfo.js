@@ -2,8 +2,8 @@
 import React, {useState,useContext } from 'react'
 import LeftBar from '../leftBar/LeftBar'
 import "./BasicInfo.css"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+ 
+import { useNavigate,Link } from "react-router-dom";
 import {PassData} from "../../App"
 function BasicInfo() {
 const {condata,setcondata}=useContext(PassData);
@@ -33,7 +33,7 @@ const [data, setPosts] = useState({ propertyType: "", price: "", propertyAge: ""
             <div class="dropdown">
               <span>  <i class="bi bi-chevron-down"></i> </span>
               <div class="dropdown-content">
-                <p>LogOut</p>
+              <Link to="/Login"> <p>LogOut</p></Link>
               </div>
             </div><br />
           </div><br /><hr />
@@ -42,6 +42,7 @@ const [data, setPosts] = useState({ propertyType: "", price: "", propertyAge: ""
         </header>
         <nav>
           <Link to="/BasicInfo"><button id="basicInfoBtn"><i style={mystyle} class="bi bi-1-circle"></i>{" "} Basic Info</button></Link>
+          
           <Link to="/PropertyDetail"><button className='sub-btn'><i class="bi bi-2-circle"></i> Property Detail</button></Link>
           <Link to="/GeneralInfo"><button className='sub-btn'><i class="bi bi-3-circle"></i> General Info</button></Link>
           <Link to="/LocationInfo"><button className='sub-btn'><i class="bi bi-4-circle"></i> Locatoin Info </button></Link>

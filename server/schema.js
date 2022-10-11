@@ -52,7 +52,7 @@ const userInfoModel=mongoose.model("userInfoCollection",userInfoSchema)
 ///////////////////////////////////////////////////////////
  
 const signupSchema = new mongoose.Schema({
-    mail: {
+    email: {
         type: String,
         required: true
     },
@@ -63,5 +63,5 @@ const signupSchema = new mongoose.Schema({
         minLength: 6
     }
 });
-const signupModal = mongoose.model("usersignup", signupSchema);
+const signupModal = mongoose.model("userlogin", signupSchema);
 module.exports = {signupModal,userInfoModel};

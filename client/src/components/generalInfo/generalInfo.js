@@ -32,7 +32,7 @@ const handlePosts =()=>{
             <div class="dropdown">
   <span>  <i class="bi bi-chevron-down"></i> </span>
   <div class="dropdown-content">
-  <p>LogOut</p>
+  <Link><p>LogOut</p></Link>
   </div>
 </div>
 
